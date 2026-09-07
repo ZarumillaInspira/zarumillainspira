@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Personaliza — Zarumilla Inspira</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root{
+            --green:#082c23;
+            --green2:#124b3b;
+            --green3:#1c6650;
+            --gold:#c9a24e;
+            --gold-light:#e2c779;
+            --cream:#f7f4ec;
+            --white:#ffffff;
+            --text:#18221e;
+            --muted:#66736d;
+            --border:rgba(8,44,35,.12);
+            --shadow:0 20px 60px rgba(8,44,35,.10);
+            --shadow-hover:0 30px 80px rgba(8,44,35,.18);
+            --ease:cubic-bezier(.16,1,.3,1);
+        }
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        html{
+            scroll-behavior:smooth;
+        }
+
+        body{
+            font-family:"DM Sans",sans-serif;
+            background:var(--cream);
+            color:var(--text);
+            overflow-x:hidden;
+        }
+
+        a{
+            color:inherit;
+            text-decoration:none;
+        }
+
+        button,
+        input,
+        select{
+            font-family:inherit;
+        }
+
+        /* TOP BAR */
+
+        .top-bar{
+            background:var(--gold);
+            color:var(--green);
+            text-align:center;
+            padding:11px 20px;
+            font-size:.72rem;
+            font-weight:800;
+            letter-spacing:1.5px;
+        }
+
+        /* HEADER */
+
+        .site-header{
+            position:sticky;
+            top:0;
+            z-index:1000;
+            background:rgba(255,255,255,.94);
+            backdrop-filter:blur(18px);
+            border-bottom:1px solid rgba(8,44,35,.08);
+        }
+
+        .header-container{
+            width:min(1400px,calc(100% - 60px));
+            min-height:88px;
+            margin:auto;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:35px;
+        }
+
+        .logo{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            flex-shrink:0;
+        }
+
+        .logo-mark{
+            width:48px;
+            height:48px;
+            display:grid;
+            place-items:center;
+            border-radius:13px;
+            background:var(--green);
+            color:var(--gold);
+            font-family:"Playfair Display",serif;
+            font-size:1.2rem;
+            font-weight:700;
+            box-shadow:0 8px 20px rgba(8,44,35,.16);
+        }
+
+        .logo-text{
+            color:var(--green);
+            font-family:"Playfair Display",serif;
+            font-size:1.02rem;
+            font-weight:700;
+            line-height:1.05;
+        }
+
+        .nav-menu{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:28px;
+            flex:1;
+        }
+
+        .nav-link{
+            position:relative;
+            padding:33px 0;
+            color:#405049;
+            font-size:.86rem;
+            font-weight:700;
+            transition:.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active{
+            color:var(--green);
+        }
+
+        .nav-link::after{
+            content:"";
+            position:absolute;
+            left:0;
+            bottom:25px;
+            width:0;
+            height:2px;
+            background:var(--gold);
+            transition:.35s var(--ease);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after{
+            width:100%;
+        }
+
+        .header-actions{
+            display:flex;
+            align-items:center;
+            gap:12px;
+        }
+
+        .btn-pedido{
+            display:flex;
+            align-items:center;
+            gap:8px;
+            padding:13px 19px;
+            border-radius:100px;
+            background:var(--green);
+            color:white;
+            font-size:.82rem;
+            font-weight:800;
+            transition:.35s var(--ease);
+        }
+
+        .btn-pedido:hover{
+            transform:translateY(-3px);
+            background:var(--green2);
+            box-shadow:0 12px 30px rgba(8,44,35,.20);
+        }
+
+        .cart-count{
+            min-width:22px;
+            height:22px;
+            display:grid;
+            place-items:center;
+            border-radius:50%;
+            background:var(--gold);
+            color:var(--green);
+            font-size:.7rem;
+        }
+
+        .hamburger{
+            display:none;
+            width:44px;
+            height:44px;
+            border:0;
+            border-radius:12px;
+            background:var(--green);
+            color:white;
+            font-size:1.2rem;
+            cursor:pointer;
+        }
+
+        /* HERO */
+
+        .page-header{
+            position:relative;
+            min-height:500px;
+            padding:105px 30px 90px;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+            overflow:hidden;
+            background:
+                radial-gradient(circle at 15% 20%,rgba(201,162,78,.17),transparent 30%),
+                radial-gradient(circle at 85% 80%,rgba(28,102,80,.35),transparent 35%),
+                linear-gradient(135deg,#061f19,#0b382c 55%,#124b3b);
+            color:white;
+        }
+
+        .page-header::before{
+            content:"";
+            position:absolute;
+            width:520px;
+            height:520px;
+            left:-250px;
+            top:-240px;
+            border:1px solid rgba(201,162,78,.20);
+            border-radius:50%;
+        }
+
+        .page-header::after{
+            content:"";
+            position:absolute;
+            width:420px;
+            height:420px;
+            right:-210px;
+            bottom:-240px;
+            border:1px solid rgba(255,255,255,.08);
+            border-radius:50%;
+        }
+
+        .section-number{
+            position:relative;
+            z-index:2;
+            display:inline-block;
+            margin-bottom:20px;
+            color:var(--gold-light);
+            font-size:.72rem;
+            font-weight:800;
+            letter-spacing:3px;
+        }
+
+        .page-header h1{
+            position:relative;
+            z-index:2;
+            margin-bottom:28px;
+            font-family:"Playfair Display",serif;
+            font-size:clamp(4rem,10vw,8rem);
+            line-height:.9;
+            letter-spacing:-3px;
+            font-weight:600;
+        }
+
+        .page-header p{
+            position:relative;
+            z-index:2;
+            max-width:760px;
+            color:rgba(255,255,255,.82);
+            font-size:1.15rem;
+            line-height:1.8;
+        }
+
+        /* MAIN */
+
+        .main-content{
+            width:min(1400px,calc(100% - 60px));
+            margin:auto;
+            padding:95px 0 120px;
+        }
+
+        /* STEPS */
+
+        .personaliza-steps{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:25px;
+            margin-bottom:75px;
+        }
+
+        .step-card{
+            position:relative;
+            padding:35px;
+            background:white;
+            border:1px solid var(--border);
+            border-radius:26px;
+            box-shadow:0 12px 40px rgba(8,44,35,.05);
+            overflow:hidden;
+            transition:
+                transform .45s var(--ease),
+                box-shadow .45s ease,
+                border-color .45s ease;
+        }
+
+        .step-card:hover{
+            transform:translateY(-8px);
+            box-shadow:var(--shadow-hover);
+            border-color:rgba(201,162,78,.4);
+        }
+
+        .step-card::after{
+            content:"";
+            position:absolute;
+            right:-55px;
+            bottom:-55px;
+            width:160px;
+            height:160px;
+            border:1px solid rgba(201,162,78,.15);
+            border-radius:50%;
+            transition:.6s var(--ease);
+        }
+
+        .step-card:hover::after{
+            transform:scale(1.25);
+        }
+
+        .step-num{
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            width:45px;
+            height:45px;
+            margin-bottom:25px;
+            border-radius:50%;
+            background:var(--green);
+            color:var(--gold-light);
+            font-size:.75rem;
+            font-weight:800;
+            transition:.4s var(--ease);
+        }
+
+        .step-card:hover .step-num{
+            transform:rotate(8deg) scale(1.08);
+            background:var(--gold);
+            color:var(--green);
+        }
+
+        .step-card h3{
+            position:relative;
+            z-index:2;
+            margin-bottom:13px;
+            color:var(--green);
+            font-family:"Playfair Display",serif;
+            font-size:1.55rem;
+        }
+
+        .step-card p{
+            position:relative;
+            z-index:2;
+            color:var(--muted);
+            font-size:.92rem;
+            line-height:1.8;
+        }
+
+        /* STUDIO */
+
+        .customizer-studio{
+            display:grid;
+            grid-template-columns:1.15fr .85fr;
+            gap:30px;
+            align-items:stretch;
+        }
+
+        /* PREVIEW */
+
+        .customizer-preview{
+            min-height:650px;
+            position:relative;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            overflow:hidden;
+            border-radius:35px;
+            background:
+                radial-gradient(circle at 50% 45%,rgba(201,162,78,.10),transparent 30%),
+                linear-gradient(145deg,#eae6da,#f7f4ec);
+            box-shadow:var(--shadow);
+        }
+
+        .customizer-preview::before{
+            content:"PERSONALIZA TU HISTORIA";
+            position:absolute;
+            top:35px;
+            left:40px;
+            color:rgba(8,44,35,.28);
+            font-size:.68rem;
+            font-weight:800;
+            letter-spacing:2px;
+        }
+
+        .customizer-preview::after{
+            content:"ZI";
+            position:absolute;
+            right:30px;
+            bottom:-55px;
+            color:rgba(8,44,35,.035);
+            font-family:"Playfair Display",serif;
+            font-size:14rem;
+            font-weight:700;
+        }
+
+        /* SHIRT */
+
+        .preview-shirt{
+            position:relative;
+            z-index:2;
+            width:330px;
+            height:390px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            clip-path:polygon(
+                27% 0,
+                42% 8%,
+                50% 14%,
+                58% 8%,
+                73% 0,
+                100% 18%,
+                84% 43%,
+                76% 35%,
+                76% 100%,
+                24% 100%,
+                24% 35%,
+                16% 43%,
+                0 18%
+            );
+            background:#063f31;
+            filter:drop-shadow(0 30px 25px rgba(8,44,35,.25));
+            transition:
+                background-color .55s var(--ease),
+                transform .55s var(--ease),
+                filter .55s ease;
+        }
+
+        .preview-shirt.color-changing{
+            transform:scale(.97) rotate(-1deg);
+        }
+
+        .preview-shirt::before{
+            content:"";
+            position:absolute;
+            top:28px;
+            left:50%;
+            transform:translateX(-50%);
+            width:75px;
+            height:40px;
+            border-radius:50%;
+            background:#f7f4ec;
+            opacity:.95;
+        }
+
+        #preview-text{
+            position:relative;
+            z-index:5;
+            max-width:220px;
+            padding:8px;
+            color:white;
+            font-size:1.05rem;
+            font-weight:800;
+            letter-spacing:2px;
+            text-align:center;
+            text-shadow:0 2px 8px rgba(0,0,0,.2);
+            transition:
+                opacity .25s ease,
+                transform .35s var(--ease);
+        }
+
+        #preview-text.text-changing{
+            opacity:0;
+            transform:translateY(8px);
+        }
+
+        /* CONTROLS */
+
+        .customizer-controls{
+            padding:45px;
+            border-radius:35px;
+            background:white;
+            border:1px solid var(--border);
+            box-shadow:var(--shadow);
+        }
+
+        .customizer-controls h3{
+            margin-bottom:10px;
+            color:var(--green);
+            font-family:"Playfair Display",serif;
+            font-size:2.8rem;
+            line-height:1;
+        }
+
+        .customizer-controls::before{
+            content:"ESTUDIO CREATIVO · 01";
+            display:block;
+            margin-bottom:20px;
+            color:var(--gold);
+            font-size:.7rem;
+            font-weight:800;
+            letter-spacing:2px;
+        }
+
+        .control-group{
+            margin-top:35px;
+        }
+
+        .control-group label{
+            display:block;
+            margin-bottom:14px;
+            color:var(--green);
+            font-size:.78rem;
+            font-weight:800;
+            letter-spacing:1px;
+        }
+
+        /* COLORS */
+
+        .color-swatches{
+            display:flex;
+            flex-wrap:wrap;
+            gap:13px;
+        }
+
+        .swatch{
+            position:relative;
+            width:48px;
+            height:48px;
+            border-radius:50%;
+            cursor:pointer;
+            border:3px solid white;
+            box-shadow:
+                0 0 0 1px rgba(8,44,35,.16),
+                0 5px 15px rgba(8,44,35,.10);
+            transition:
+                transform .35s var(--ease),
+                box-shadow .35s ease;
+        }
+
+        .swatch:hover{
+            transform:translateY(-5px) scale(1.08);
+        }
+
+        .swatch:active{
+            transform:scale(.90);
+        }
+
+        .swatch.active{
+            transform:scale(1.13);
+            box-shadow:
+                0 0 0 2px var(--gold),
+                0 0 0 5px rgba(201,162,78,.15);
+        }
+
+        .swatch.active::after{
+            content:"✓";
+            position:absolute;
+            inset:0;
+            display:grid;
+            place-items:center;
+            color:white;
+            font-size:.9rem;
+            font-weight:800;
+            text-shadow:0 2px 5px rgba(0,0,0,.5);
+        }
+
+        /* INPUT */
+
+        .control-input,
+        .control-select{
+            width:100%;
+            min-height:55px;
+            padding:0 17px;
+            border:1px solid rgba(8,44,35,.16);
+            border-radius:14px;
+            background:#faf9f5;
+            color:var(--text);
+            outline:none;
+            font-size:.9rem;
+            transition:
+                border-color .3s ease,
+                box-shadow .3s ease,
+                background .3s ease,
+                transform .3s var(--ease);
+        }
+
+        .control-input:hover,
+        .control-select:hover{
+            border-color:rgba(8,44,35,.30);
+        }
+
+        .control-input:focus,
+        .control-select:focus{
+            background:white;
+            border-color:var(--gold);
+            box-shadow:0 0 0 4px rgba(201,162,78,.12);
+            transform:translateY(-2px);
+        }
+
+        .control-input::placeholder{
+            color:#9aa39f;
+        }
+
+        /* BUTTON */
+
+        .btn-primary{
+            position:relative;
+            overflow:hidden;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            min-height:58px;
+            padding:16px 22px;
+            border-radius:100px;
+            background:var(--green);
+            color:white;
+            font-size:.84rem;
+            font-weight:800;
+            transition:
+                transform .35s var(--ease),
+                box-shadow .35s ease,
+                background .35s ease;
+        }
+
+        .btn-primary::before{
+            content:"";
+            position:absolute;
+            top:0;
+            left:-110%;
+            width:70%;
+            height:100%;
+            background:linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,255,255,.18),
+                transparent
+            );
+            transform:skewX(-20deg);
+            transition:left .6s ease;
+        }
+
+        .btn-primary:hover{
+            transform:translateY(-4px);
+            background:var(--green2);
+            box-shadow:0 18px 35px rgba(8,44,35,.22);
+        }
+
+        .btn-primary:hover::before{
+            left:140%;
+        }
+
+        .btn-primary:active{
+            transform:translateY(-1px) scale(.98);
+        }
+
+        /* EXTRA INFO */
+
+        .customizer-note{
+            margin-top:18px;
+            color:var(--muted);
+            font-size:.76rem;
+            line-height:1.7;
+            text-align:center;
+        }
+
+        /* FOOTER */
+
+        .site-footer{
+            padding:75px 0 25px;
+            background:var(--green);
+            color:white;
+        }
+
+        .footer-container{
+            width:min(1400px,calc(100% - 60px));
+            margin:auto;
+            display:grid;
+            grid-template-columns:2fr 1fr 1fr 1fr 1.3fr;
+            gap:45px;
+        }
+
+        .footer-brand p{
+            max-width:300px;
+            margin-top:20px;
+            color:rgba(255,255,255,.65);
+            line-height:1.7;
+        }
+
+        .footer-col h4{
+            margin-bottom:20px;
+            color:var(--gold-light);
+            font-size:.75rem;
+            letter-spacing:2px;
+        }
+
+        .footer-col ul{
+            list-style:none;
+        }
+
+        .footer-col li{
+            margin-bottom:12px;
+        }
+
+        .footer-col a{
+            color:rgba(255,255,255,.68);
+            font-size:.88rem;
+            transition:.3s ease;
+        }
+
+        .footer-col a:hover{
+            color:white;
+            padding-left:4px;
+        }
+
+        .footer-bottom{
+            width:min(1400px,calc(100% - 60px));
+            margin:60px auto 0;
+            padding-top:25px;
+            border-top:1px solid rgba(255,255,255,.12);
+            display:flex;
+            justify-content:space-between;
+            gap:20px;
+            color:rgba(255,255,255,.45);
+            font-size:.7rem;
+            letter-spacing:1.5px;
+        }
+
+        /* ANIMATION */
+
+        .reveal{
+            opacity:0;
+            transform:translateY(30px);
+            transition:
+                opacity .8s ease,
+                transform .8s var(--ease);
+        }
+
+        .reveal.show{
+            opacity:1;
+            transform:translateY(0);
+        }
+
+        /* TABLET */
+
+        @media(max-width:1100px){
+
+            .nav-menu{
+                gap:16px;
+            }
+
+            .nav-link{
+                font-size:.78rem;
+            }
+
+            .personaliza-steps{
+                grid-template-columns:1fr;
+            }
+
+            .customizer-studio{
+                grid-template-columns:1fr;
+            }
+
+            .customizer-preview{
+                min-height:560px;
+            }
+
+            .footer-container{
+                grid-template-columns:repeat(2,1fr);
+            }
+
+            .footer-brand{
+                grid-column:1/-1;
+            }
+        }
+
+        /* MOBILE */
+
+        @media(max-width:800px){
+
+            .header-container,
+            .main-content,
+            .footer-container,
+            .footer-bottom{
+                width:min(100% - 32px,1400px);
+            }
+
+            .hamburger{
+                display:block;
+            }
+
+            .nav-menu{
+                position:absolute;
+                top:88px;
+                left:16px;
+                right:16px;
+                padding:15px;
+                display:none;
+                flex-direction:column;
+                align-items:stretch;
+                gap:3px;
+                background:white;
+                border-radius:18px;
+                box-shadow:0 20px 50px rgba(8,44,35,.15);
+            }
+
+            .nav-menu.open{
+                display:flex;
+            }
+
+            .nav-link{
+                padding:14px 15px;
+                border-radius:10px;
+            }
+
+            .nav-link:hover{
+                background:var(--cream);
+            }
+
+            .nav-link::after{
+                display:none;
+            }
+
+            .page-header{
+                min-height:430px;
+                padding:80px 20px;
+            }
+
+            .customizer-preview{
+                min-height:500px;
+                border-radius:25px;
+            }
+
+            .customizer-controls{
+                padding:30px;
+                border-radius:25px;
+            }
+
+            .preview-shirt{
+                width:280px;
+                height:335px;
+            }
+        }
+
+        /* SMALL MOBILE */
+
+        @media(max-width:520px){
+
+            .top-bar{
+                font-size:.58rem;
+                letter-spacing:.8px;
+                line-height:1.5;
+            }
+
+            .header-container{
+                min-height:76px;
+            }
+
+            .logo-mark{
+                width:42px;
+                height:42px;
+            }
+
+            .logo-text{
+                font-size:.9rem;
+            }
+
+            .btn-pedido{
+                padding:11px 13px;
+                font-size:.72rem;
+            }
+
+            .hamburger{
+                width:42px;
+                height:42px;
+            }
+
+            .nav-menu{
+                top:76px;
+            }
+
+            .page-header{
+                min-height:390px;
+            }
+
+            .page-header h1{
+                font-size:4rem;
+            }
+
+            .page-header p{
+                font-size:.98rem;
+            }
+
+            .main-content{
+                padding:70px 0 90px;
+            }
+
+            .customizer-preview{
+                min-height:430px;
+            }
+
+            .preview-shirt{
+                width:235px;
+                height:285px;
+            }
+
+            .customizer-controls{
+                padding:25px;
+            }
+
+            .customizer-controls h3{
+                font-size:2.2rem;
+            }
+
+            .swatch{
+                width:44px;
+                height:44px;
+            }
+
+            .footer-container{
+                grid-template-columns:1fr;
+            }
+
+            .footer-brand{
+                grid-column:auto;
+            }
+
+            .footer-bottom{
+                flex-direction:column;
+                text-align:center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+
+    <div class="top-bar">
+        ZARUMILLA · TUMBES · PERÚ &nbsp;|&nbsp;
+        HECHO CON ORGULLO LOCAL &nbsp;|&nbsp;
+        INSPIRADO EN NUESTRA TIERRA
+    </div>
+
+    <!-- HEADER -->
+
+    <header class="site-header">
+
+        <div class="header-container">
+
+            <a href="index.html" class="logo">
+                <div class="logo-mark">ZI</div>
+
+                <div class="logo-text">
+                    Zarumilla<br>Inspira
+                </div>
+            </a>
+
+            <nav class="nav-menu" id="nav-menu">
+
+                <a href="index.html" class="nav-link">
+                    Inicio
+                </a>
+
+                <a href="coleccion.html" class="nav-link">
+                    Colección
+                </a>
+
+                <a href="nosotros.html" class="nav-link">
+                    Nosotros
+                </a>
+
+                <a href="ofertas.html" class="nav-link">
+                    Ofertas
+                </a>
+
+                <a href="personaliza.html" class="nav-link active">
+                    Personaliza
+                </a>
+
+                <a href="zarumilla.html" class="nav-link">
+                    Zarumilla
+                </a>
+
+            </nav>
+
+            <div class="header-actions">
+
+                <a href="pedidos.html" class="btn-pedido">
+                    Pedido
+                    <span class="cart-count">0</span>
+                </a>
+
+                <button class="hamburger" id="hamburger">
+                    ☰
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- HERO -->
+
+    <section class="page-header">
+
+        <span class="section-number">
+            ESTUDIO CREATIVO · DISEÑO PERSONAL
+        </span>
+
+        <h1>PERSONALIZA</h1>
+
+        <p>
+            Tu historia. Tu polo. Diseña una prenda única que refleje
+            tu conexión con Zarumilla y convierte una idea personal
+            en una pieza con identidad.
+        </p>
+
+    </section>
+
+    <main class="main-content">
+
+        <!-- PASOS -->
+
+        <section class="personaliza-steps">
+
+            <article class="step-card reveal">
+
+                <span class="step-num">01</span>
+
+                <h3>
+                    ELIGE TU DISEÑO
+                </h3>
+
+                <p>
+                    Selecciona el color base de tu polo entre una
+                    paleta inspirada en los paisajes, la naturaleza
+                    y los tonos característicos de nuestra tierra.
+                </p>
+
+            </article>
+
+            <article class="step-card reveal">
+
+                <span class="step-num">02</span>
+
+                <h3>
+                    PERSONALIZA
+                </h3>
+
+                <p>
+                    Agrega una palabra, frase, nombre o elemento
+                    representativo que quieras convertir en parte
+                    de tu propia historia.
+                </p>
+
+            </article>
+
+            <article class="step-card reveal">
+
+                <span class="step-num">03</span>
+
+                <h3>
+                    HAZ TU PEDIDO
+                </h3>
+
+                <p>
+                    Cuando tengas lista tu idea, envíanos la configuración
+                    directamente por WhatsApp para coordinar los detalles
+                    de tu prenda.
+                </p>
+
+            </article>
+
+        </section>
+
+        <!-- STUDIO -->
+
+        <section class="customizer-studio reveal">
+
+            <!-- PREVIEW -->
+
+            <div class="customizer-preview">
+
+                <div class="preview-shirt" id="preview-shirt">
+
+                    <span id="preview-text">
+                        ZARUMILLA
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- CONTROLS -->
+
+            <div class="customizer-controls">
+
+                <h3>
+                    Simulador de Polo
+                </h3>
+
+                <div class="control-group">
+
+                    <label>
+                        COLOR DEL POLO
+                    </label>
+
+                    <div class="color-swatches">
+
+                        <div
+                            class="swatch active"
+                            style="background-color:#063f31;"
+                            data-color="#063f31"
+                            title="Verde Oscuro"
+                        ></div>
+
+                        <div
+                            class="swatch"
+                            style="background-color:#03271f;"
+                            data-color="#03271f"
+                            title="Verde Profundo"
+                        ></div>
+
+                        <div
+                            class="swatch"
+                            style="background-color:#b63832;"
+                            data-color="#b63832"
+                            title="Rojo Tierra"
+                        ></div>
+
+                        <div
+                            class="swatch"
+                            style="background-color:#155c91;"
+                            data-color="#155c91"
+                            title="Azul Río"
+                        ></div>
+
+                        <div
+                            class="swatch"
+                            style="background-color:#111513;"
+                            data-color="#111513"
+                            title="Negro"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+                <div class="control-group">
+
+                    <label>
+                        TEXTO PERSONALIZADO
+                    </label>
+
+                    <input
+                        type="text"
+                        id="texto-personalizado"
+                        class="control-input"
+                        placeholder="Ej. ZARUMILLA / MI ORIGEN"
+                        maxlength="20"
+                    >
+
+                </div>
+
+                <div class="control-group">
+
+                    <label>
+                        TALLA
+                    </label>
+
+                    <select
+                        class="control-select"
+                        id="talla-personalizada"
+                    >
+                        <option>Talla S</option>
+                        <option selected>Talla M</option>
+                        <option>Talla L</option>
+                        <option>Talla XL</option>
+                    </select>
+
+                </div>
+
+                <a
+                    href="https://wa.me/51929662238?text=Hola%20Zarumilla%20Inspira%2C%20quiero%20hacer%20un%20polo%20personalizado."
+                    target="_blank"
+                    rel="noopener"
+                    class="btn-primary"
+                    style="width:100%;margin-top:25px;"
+                >
+                    Solicitar diseño personalizado →
+                </a>
+
+                <p class="customizer-note">
+                    Podrás coordinar por WhatsApp los detalles finales
+                    de tu diseño, disponibilidad y entrega.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <div class="logo">
+
+                    <div class="logo-mark">
+                        ZI
+                    </div>
+
+                    <div
+                        class="logo-text"
+                        style="color:var(--white);"
+                    >
+                        Zarumilla<br>Inspira
+                    </div>
+
+                </div>
+
+                <p>
+                    Viste lo que representas. Ropa con identidad,
+                    creatividad y orgullo tumbesino.
+                </p>
+
+            </div>
+
+            <div class="footer-col">
+
+                <h4>Explorar</h4>
+
+                <ul>
+                    <li>
+                        <a href="index.html">Inicio</a>
+                    </li>
+
+                    <li>
+                        <a href="coleccion.html">Colección</a>
+                    </li>
+
+                    <li>
+                        <a href="ofertas.html">Ofertas</a>
+                    </li>
+
+                    <li>
+                        <a href="personaliza.html">Personaliza</a>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="footer-col">
+
+                <h4>Identidad</h4>
+
+                <ul>
+                    <li>
+                        <a href="nosotros.html">Nosotros</a>
+                    </li>
+
+                    <li>
+                        <a href="zarumilla.html">Zarumilla</a>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="footer-col">
+
+                <h4>Pedidos</h4>
+
+                <ul>
+
+                    <li>
+                        <a href="pedidos.html">
+                            Mi pedido
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="https://wa.me/51929662238?text=Hola%20Zarumilla%20Inspira%2C%20quiero%20hacer%20un%20pedido."
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            WhatsApp
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="footer-col">
+
+                <h4>Contacto</h4>
+
+                <ul>
+
+                    <li>
+                        <a href="zarumilla.html">
+                            Zarumilla · Tumbes · Perú
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="mailto:contacto@zarumillainspira.pe">
+                            contacto@zarumillainspira.pe
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <div>
+                © 2026 ZARUMILLA INSPIRA
+            </div>
+
+            <div>
+                HECHO CON ORGULLO LOCAL
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script>
+
+        /* =========================
+           MENÚ MÓVIL
+        ========================= */
+
+        const hamburger = document.getElementById("hamburger");
+        const navMenu = document.getElementById("nav-menu");
+
+        hamburger.addEventListener("click", () => {
+
+            navMenu.classList.toggle("open");
+
+        });
+
+        document.querySelectorAll(".nav-link").forEach(link => {
+
+            link.addEventListener("click", () => {
+
+                navMenu.classList.remove("open");
+
+            });
+
+        });
+
+
+        /* =========================
+           PERSONALIZADOR
+        ========================= */
+
+        const shirt = document.getElementById("preview-shirt");
+        const previewText = document.getElementById("preview-text");
+        const textInput = document.getElementById("texto-personalizado");
+
+        const swatches = document.querySelectorAll(".swatch");
+
+
+        /* CAMBIO DE COLOR CON TRANSICIÓN */
+
+        swatches.forEach(swatch => {
+
+            swatch.addEventListener("click", () => {
+
+                const newColor = swatch.dataset.color;
+
+                swatches.forEach(item => {
+                    item.classList.remove("active");
+                });
+
+                swatch.classList.add("active");
+
+                shirt.classList.add("color-changing");
+
+                setTimeout(() => {
+
+                    shirt.style.backgroundColor = newColor;
+
+                }, 150);
+
+                setTimeout(() => {
+
+                    shirt.classList.remove("color-changing");
+
+                }, 500);
+
+            });
+
+        });
+
+
+        /* TEXTO CON ANIMACIÓN */
+
+        textInput.addEventListener("input", () => {
+
+            const value = textInput.value.trim();
+
+            previewText.classList.add("text-changing");
+
+            setTimeout(() => {
+
+                previewText.textContent =
+                    value || "ZARUMILLA";
+
+                previewText.classList.remove("text-changing");
+
+            }, 180);
+
+        });
+
+
+        /* EFECTO AL CAMBIAR TALLA */
+
+        const sizeSelect =
+            document.getElementById("talla-personalizada");
+
+        sizeSelect.addEventListener("change", () => {
+
+            shirt.animate(
+                [
+                    {
+                        transform:"scale(1)"
+                    },
+                    {
+                        transform:"scale(.94)"
+                    },
+                    {
+                        transform:"scale(1)"
+                    }
+                ],
+                {
+                    duration:450,
+                    easing:"cubic-bezier(.16,1,.3,1)"
+                }
+            );
+
+        });
+
+
+        /* =========================
+           ANIMACIONES AL HACER SCROLL
+        ========================= */
+
+        const revealElements =
+            document.querySelectorAll(".reveal");
+
+        const observer =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if(entry.isIntersecting){
+
+                            entry.target.classList.add("show");
+
+                            observer.unobserve(entry.target);
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold:.12
+                }
+            );
+
+        revealElements.forEach(element => {
+
+            observer.observe(element);
+
+        });
+
+    </script>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

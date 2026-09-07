@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zarumilla — Zarumilla Inspira</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="estilos.css">
+
+    <style>
+        :root {
+            --green: #082c23;
+            --green-2: #124b3b;
+            --green-3: #1c6650;
+            --gold: #c9a24e;
+            --gold-light: #e2c779;
+            --cream: #f7f4ec;
+            --white: #ffffff;
+            --text: #18221e;
+            --muted: #66736d;
+            --border: rgba(8,44,35,.12);
+            --shadow: 0 20px 60px rgba(8,44,35,.10);
+            --shadow-hover: 0 30px 80px rgba(8,44,35,.18);
+            --ease: cubic-bezier(.16,1,.3,1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .top-bar {
+            background: var(--green);
+            color: rgba(255,255,255,.82);
+            text-align: center;
+            padding: 11px 20px;
+            font-size: .72rem;
+            font-weight: 600;
+            letter-spacing: .12em;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(247,244,236,.90);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(8,44,35,.08);
+        }
+
+        .header-container {
+            width: min(1400px, calc(100% - 60px));
+            margin: auto;
+            min-height: 82px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .logo-mark {
+            width: 45px;
+            height: 45px;
+            display: grid;
+            place-items: center;
+            background: var(--green);
+            color: var(--gold-light);
+            border-radius: 12px;
+            font-family: "Playfair Display", serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+        }
+
+        .logo-text {
+            font-family: "Playfair Display", serif;
+            font-size: 1.05rem;
+            line-height: .92;
+            color: var(--green);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+        }
+
+        .nav-link {
+            position: relative;
+            color: #3f4c46;
+            font-size: .86rem;
+            font-weight: 600;
+            transition: color .3s ease;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -9px;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width .35s var(--ease);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--green);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .btn-pedido {
+            background: var(--green);
+            color: var(--white);
+            padding: 12px 18px;
+            border-radius: 999px;
+            font-size: .84rem;
+            font-weight: 700;
+            transition: transform .3s var(--ease), background .3s ease;
+        }
+
+        .btn-pedido:hover {
+            background: var(--green-2);
+            transform: translateY(-2px);
+        }
+
+        .cart-count {
+            display: inline-grid;
+            place-items: center;
+            min-width: 21px;
+            height: 21px;
+            margin-left: 5px;
+            padding: 0 5px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: var(--green);
+            font-size: .7rem;
+        }
+
+        .hamburger {
+            display: none;
+            border: 0;
+            background: transparent;
+            color: var(--green);
+            font-size: 1.6rem;
+            cursor: pointer;
+        }
+
+        /* HERO */
+
+        .page-header {
+            position: relative;
+            min-height: 570px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+            padding: 100px max(30px, calc((100vw - 1400px) / 2));
+            background:
+                linear-gradient(100deg, rgba(8,44,35,.96), rgba(8,44,35,.74)),
+                url("img/manglares.jpg") center/cover;
+            color: var(--white);
+        }
+
+        .page-header::before {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            right: -180px;
+            top: -180px;
+            border: 1px solid rgba(226,199,121,.20);
+            border-radius: 50%;
+        }
+
+        .page-header::after {
+            content: "";
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            right: -100px;
+            top: -90px;
+            border: 1px solid rgba(226,199,121,.14);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+        }
+
+        .section-number {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--gold);
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: .16em;
+        }
+
+        .page-header h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(4.5rem, 11vw, 9.5rem);
+            line-height: .82;
+            font-weight: 600;
+            letter-spacing: -5px;
+            margin-bottom: 35px;
+        }
+
+        .page-header p {
+            max-width: 720px;
+            color: rgba(255,255,255,.82);
+            font-size: clamp(1.05rem, 2vw, 1.35rem);
+            line-height: 1.7;
+        }
+
+        /* INTRO */
+
+        .intro-section {
+            width: min(1400px, calc(100% - 60px));
+            margin: auto;
+            padding: 120px 0 70px;
+            display: grid;
+            grid-template-columns: .75fr 1.25fr;
+            gap: 100px;
+            align-items: start;
+        }
+
+        .intro-label {
+            position: sticky;
+            top: 130px;
+        }
+
+        .intro-label h2 {
+            font-family: "Playfair Display", serif;
+            color: var(--green);
+            font-size: clamp(2.4rem, 4vw, 4.3rem);
+            line-height: 1.02;
+            font-weight: 500;
+        }
+
+        .intro-text p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: var(--muted);
+            margin-bottom: 24px;
+        }
+
+        .gold-line {
+            width: 70px;
+            height: 3px;
+            background: var(--gold);
+            margin: 30px 0;
+        }
+
+        /* SECTIONS */
+
+        .territory-section {
+            width: min(1400px, calc(100% - 60px));
+            margin: auto;
+            padding: 70px 0;
+        }
+
+        .territory-grid {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .territory-grid.reverse {
+            grid-template-columns: .9fr 1.1fr;
+        }
+
+        .territory-grid.reverse .territory-image {
+            order: 2;
+        }
+
+        .territory-copy {
+            padding: 20px 0;
+        }
+
+        .territory-copy h2 {
+            font-family: "Playfair Display", serif;
+            color: var(--green);
+            font-size: clamp(2.5rem, 4vw, 4.3rem);
+            line-height: 1.02;
+            font-weight: 500;
+            letter-spacing: -1px;
+            margin-bottom: 28px;
+        }
+
+        .territory-copy p {
+            color: var(--muted);
+            font-size: 1.08rem;
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+        .territory-image {
+            min-height: 570px;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background: var(--green);
+        }
+
+        .territory-image img {
+            width: 100%;
+            height: 100%;
+            min-height: 570px;
+            display: block;
+            object-fit: cover;
+            transition: transform .8s var(--ease);
+        }
+
+        .territory-image:hover img {
+            transform: scale(1.045);
+        }
+
+        /* DATA CARDS */
+
+        .identity-section {
+            margin-top: 80px;
+            padding: 110px 0;
+            background: var(--green);
+            color: var(--white);
+        }
+
+        .identity-inner {
+            width: min(1400px, calc(100% - 60px));
+            margin: auto;
+        }
+
+        .identity-heading {
+            max-width: 800px;
+            margin-bottom: 70px;
+        }
+
+        .identity-heading h2 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(2.8rem, 5vw, 5.2rem);
+            line-height: 1;
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .identity-heading p {
+            color: rgba(255,255,255,.72);
+            font-size: 1.08rem;
+            line-height: 1.8;
+        }
+
+        .identity-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .identity-card {
+            min-height: 280px;
+            padding: 36px;
+            border: 1px solid rgba(255,255,255,.13);
+            border-radius: 24px;
+            background: rgba(255,255,255,.045);
+            transition: transform .4s var(--ease), background .4s ease, border-color .4s ease;
+        }
+
+        .identity-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255,255,255,.08);
+            border-color: rgba(226,199,121,.42);
+        }
+
+        .identity-icon {
+            width: 52px;
+            height: 52px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(226,199,121,.45);
+            border-radius: 50%;
+            color: var(--gold-light);
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .identity-card h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 14px;
+        }
+
+        .identity-card p {
+            color: rgba(255,255,255,.68);
+            line-height: 1.75;
+        }
+
+        /* CTA */
+
+        .cta-section {
+            width: min(1400px, calc(100% - 60px));
+            margin: auto;
+            padding: 120px 0;
+        }
+
+        .cta-box {
+            position: relative;
+            overflow: hidden;
+            padding: 90px 70px;
+            border-radius: 32px;
+            background:
+                radial-gradient(circle at 85% 20%, rgba(226,199,121,.18), transparent 30%),
+                linear-gradient(135deg, var(--green-2), var(--green));
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-box h2 {
+            position: relative;
+            z-index: 2;
+            font-family: "Playfair Display", serif;
+            font-size: clamp(2.7rem, 5vw, 5rem);
+            line-height: 1;
+            font-weight: 500;
+            margin-bottom: 22px;
+        }
+
+        .cta-box p {
+            position: relative;
+            z-index: 2;
+            max-width: 650px;
+            margin: 0 auto 35px;
+            color: rgba(255,255,255,.76);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .btn-primary {
+            position: relative;
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 25px;
+            border-radius: 999px;
+            background: var(--gold);
+            color: var(--green);
+            font-weight: 800;
+            transition: transform .3s var(--ease), background .3s ease;
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-3px);
+        }
+
+        .btn-primary:active {
+            transform: scale(.96);
+        }
+
+        /* FOOTER */
+
+        .site-footer {
+            background: #061f19;
+            color: var(--white);
+            padding: 75px 0 0;
+        }
+
+        .footer-container {
+            width: min(1400px, calc(100% - 60px));
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1.7fr repeat(4, 1fr);
+            gap: 45px;
+            padding-bottom: 70px;
+        }
+
+        .footer-brand p {
+            max-width: 310px;
+            margin-top: 22px;
+            color: rgba(255,255,255,.58);
+            line-height: 1.7;
+        }
+
+        .footer-col h4 {
+            color: var(--gold-light);
+            font-size: .76rem;
+            letter-spacing: .12em;
+            margin-bottom: 22px;
+            text-transform: uppercase;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col a {
+            color: rgba(255,255,255,.64);
+            font-size: .88rem;
+            transition: color .25s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            width: min(1400px, calc(100% - 60px));
+            margin: auto;
+            padding: 22px 0;
+            border-top: 1px solid rgba(255,255,255,.10);
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            color: rgba(255,255,255,.42);
+            font-size: .7rem;
+            letter-spacing: .08em;
+        }
+
+        /* ANIMATIONS */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity .8s ease, transform .8s var(--ease);
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 1050px) {
+            .nav-menu {
+                gap: 17px;
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+
+            .intro-section {
+                gap: 50px;
+            }
+
+            .territory-grid,
+            .territory-grid.reverse {
+                gap: 50px;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .header-container,
+            .intro-section,
+            .territory-section,
+            .identity-inner,
+            .cta-section,
+            .footer-container,
+            .footer-bottom {
+                width: min(100% - 34px, 1400px);
+            }
+
+            .nav-menu {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 82px;
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 12px 20px 20px;
+                background: rgba(247,244,236,.98);
+                border-bottom: 1px solid var(--border);
+                box-shadow: 0 20px 35px rgba(8,44,35,.08);
+            }
+
+            .nav-menu.open {
+                display: flex;
+            }
+
+            .nav-link {
+                padding: 15px 5px;
+            }
+
+            .nav-link::after {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .btn-pedido {
+                padding: 10px 14px;
+            }
+
+            .page-header {
+                min-height: 500px;
+                padding: 80px 25px;
+            }
+
+            .page-header h1 {
+                letter-spacing: -3px;
+            }
+
+            .intro-section {
+                grid-template-columns: 1fr;
+                padding: 80px 0 40px;
+                gap: 35px;
+            }
+
+            .intro-label {
+                position: static;
+            }
+
+            .territory-section {
+                padding: 50px 0;
+            }
+
+            .territory-grid,
+            .territory-grid.reverse {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .territory-grid.reverse .territory-image {
+                order: 0;
+            }
+
+            .territory-image,
+            .territory-image img {
+                min-height: 390px;
+            }
+
+            .identity-section {
+                padding: 80px 0;
+            }
+
+            .identity-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section {
+                padding: 80px 0;
+            }
+
+            .cta-box {
+                padding: 65px 25px;
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 35px 20px;
+                padding-bottom: 50px;
+            }
+
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top-bar {
+                font-size: .62rem;
+                letter-spacing: .07em;
+            }
+
+            .header-container {
+                min-height: 72px;
+            }
+
+            .nav-menu {
+                top: 72px;
+            }
+
+            .logo-mark {
+                width: 40px;
+                height: 40px;
+            }
+
+            .logo-text {
+                font-size: .95rem;
+            }
+
+            .btn-pedido {
+                font-size: .75rem;
+            }
+
+            .page-header {
+                min-height: 450px;
+            }
+
+            .page-header h1 {
+                font-size: 4rem;
+            }
+
+            .territory-copy h2 {
+                font-size: 2.6rem;
+            }
+
+            .territory-image,
+            .territory-image img {
+                min-height: 300px;
+            }
+
+            .identity-card {
+                padding: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="top-bar">
+        ZARUMILLA · TUMBES · PERÚ &nbsp;|&nbsp; HECHO CON ORGULLO LOCAL &nbsp;|&nbsp; INSPIRADO EN NUESTRA TIERRA
+    </div>
+
+    <header class="site-header">
+        <div class="header-container">
+
+            <a href="index.html" class="logo">
+                <div class="logo-mark">ZI</div>
+                <div class="logo-text">Zarumilla<br>Inspira</div>
+            </a>
+
+            <nav class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="coleccion.html" class="nav-link">Colección</a>
+                <a href="nosotros.html" class="nav-link">Nosotros</a>
+                <a href="ofertas.html" class="nav-link">Ofertas</a>
+                <a href="personaliza.html" class="nav-link">Personaliza</a>
+                <a href="zarumilla.html" class="nav-link active">Zarumilla</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="pedidos.html" class="btn-pedido">
+                    Pedido <span class="cart-count">0</span>
+                </a>
+                <button class="hamburger" id="hamburger">☰</button>
+            </div>
+
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="hero-content reveal">
+            <span class="section-number">TERRITORIO · IDENTIDAD · ORIGEN</span>
+            <h1>ZARUMILLA</h1>
+            <p>
+                Un territorio marcado por la naturaleza, la frontera, sus paisajes
+                y la identidad de una comunidad que lleva el orgullo de su tierra.
+            </p>
+        </div>
+    </section>
+
+    <section class="intro-section reveal">
+
+        <div class="intro-label">
+            <span class="section-number">01 — NUESTRO TERRITORIO</span>
+            <h2>Una tierra que también se puede vestir.</h2>
+        </div>
+
+        <div class="intro-text">
+            <p>
+                Zarumilla representa mucho más que un lugar en el mapa.
+                Es un territorio lleno de paisajes, historias, costumbres
+                y elementos naturales que forman parte de la identidad de su gente.
+            </p>
+
+            <div class="gold-line"></div>
+
+            <p>
+                En Zarumilla Inspira tomamos esa identidad como punto de partida.
+                Cada color, concepto y diseño busca convertir aquello que representa
+                nuestra tierra en una propuesta que pueda llevarse todos los días.
+            </p>
+        </div>
+
+    </section>
+
+    <section class="territory-section reveal">
+
+        <div class="territory-grid">
+
+            <div class="territory-copy">
+                <span class="section-number">02 — LOS MANGLARES</span>
+
+                <h2>Naturaleza que define nuestro paisaje.</h2>
+
+                <p>
+                    Los manglares de Tumbes forman uno de los paisajes naturales
+                    más representativos de la zona. Sus canales, raíces, agua y
+                    vegetación crean una imagen única que conecta directamente
+                    con nuestro territorio.
+                </p>
+
+                <p>
+                    Sus formas y tonalidades inspiran parte del lenguaje visual
+                    de Zarumilla Inspira, convirtiendo la naturaleza local en
+                    una referencia para nuestros diseños.
+                </p>
+            </div>
+
+            <div class="territory-image">
+                <img
+                    src="img/manglares.jpg"
+                    alt="Paisaje de los manglares de Tumbes"
+                    onerror="this.src='https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=85'"
+                >
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="territory-section reveal">
+
+        <div class="territory-grid reverse">
+
+            <div class="territory-copy">
+                <span class="section-number">03 — RÍO Y FRONTERA</span>
+
+                <h2>Un punto de encuentro entre historias.</h2>
+
+                <p>
+                    El río Zarumilla forma parte del paisaje y de la memoria
+                    del territorio. Su presencia acompaña una zona donde la
+                    frontera también representa intercambio, movimiento y
+                    encuentro entre comunidades.
+                </p>
+
+                <p>
+                    Esa mezcla de territorio y cultura forma parte del carácter
+                    que queremos transmitir: una identidad cercana, auténtica
+                    y profundamente ligada a Tumbes.
+                </p>
+            </div>
+
+            <div class="territory-image">
+                <img
+                    src="img/rio.jpg"
+                    alt="Río Zarumilla"
+                    onerror="this.src='https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=85'"
+                >
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="identity-section">
+
+        <div class="identity-inner">
+
+            <div class="identity-heading reveal">
+                <span class="section-number">04 — LO QUE REPRESENTAMOS</span>
+                <h2>Más que una ubicación. Una identidad.</h2>
+                <p>
+                    Zarumilla Inspira nace para transformar elementos de nuestro
+                    entorno en una forma de expresión. Vestir también puede ser
+                    una manera de recordar de dónde venimos.
+                </p>
+            </div>
+
+            <div class="identity-cards">
+
+                <article class="identity-card reveal">
+                    <div class="identity-icon">✦</div>
+                    <h3>Origen</h3>
+                    <p>
+                        Diseños inspirados en los lugares, paisajes y elementos
+                        que forman parte de nuestra historia.
+                    </p>
+                </article>
+
+                <article class="identity-card reveal">
+                    <div class="identity-icon">◌</div>
+                    <h3>Comunidad</h3>
+                    <p>
+                        Una propuesta pensada para representar la cercanía,
+                        energía y carácter de nuestra gente.
+                    </p>
+                </article>
+
+                <article class="identity-card reveal">
+                    <div class="identity-icon">◆</div>
+                    <h3>Orgullo</h3>
+                    <p>
+                        Llevar una prenda también puede convertirse en una forma
+                        sencilla de mostrar lo que nos representa.
+                    </p>
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="cta-section reveal">
+
+        <div class="cta-box">
+
+            <span class="section-number">ZARUMILLA INSPIRA</span>
+
+            <h2>Lleva tu origen contigo.</h2>
+
+            <p>
+                Explora nuestra colección y descubre prendas creadas para
+                representar la identidad, los paisajes y el orgullo de nuestra tierra.
+            </p>
+
+            <a href="coleccion.html" class="btn-primary">
+                Ver colección completa →
+            </a>
+
+        </div>
+
+    </section>
+
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+                <div class="logo">
+                    <div class="logo-mark">ZI</div>
+                    <div class="logo-text" style="color:var(--white);">
+                        Zarumilla<br>Inspira
+                    </div>
+                </div>
+
+                <p>
+                    Viste lo que representas. Ropa con identidad y orgullo tumbesino.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Explorar</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="coleccion.html">Colección</a></li>
+                    <li><a href="ofertas.html">Ofertas</a></li>
+                    <li><a href="personaliza.html">Personaliza</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Identidad</h4>
+                <ul>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="zarumilla.html">Zarumilla</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Pedidos</h4>
+                <ul>
+                    <li><a href="pedidos.html">Mi pedido</a></li>
+                    <li>
+                        <a
+                            href="https://wa.me/51929662238?text=Hola%20Zarumilla%20Inspira%2C%20quiero%20hacer%20un%20pedido."
+                            target="_blank"
+                        >
+                            WhatsApp
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <ul>
+                    <li><a href="zarumilla.html">Zarumilla · Tumbes · Perú</a></li>
+                    <li>
+                        <a href="mailto:contacto@zarumillainspira.pe">
+                            contacto@zarumillainspira.pe
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <div>© 2026 ZARUMILLA INSPIRA</div>
+            <div>HECHO CON ORGULLO LOCAL</div>
+        </div>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+        const hamburger = document.getElementById("hamburger");
+        const navMenu = document.getElementById("nav-menu");
+
+        if (hamburger && navMenu) {
+            hamburger.addEventListener("click", () => {
+                navMenu.classList.toggle("open");
+            });
+
+            navMenu.querySelectorAll("a").forEach(link => {
+                link.addEventListener("click", () => {
+                    navMenu.classList.remove("open");
+                });
+            });
+        }
+
+        const reveals = document.querySelectorAll(".reveal");
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                }
+            });
+        }, {
+            threshold: 0.12
+        });
+
+        reveals.forEach(element => observer.observe(element));
+    </script>
+
+</body>
+</html>
