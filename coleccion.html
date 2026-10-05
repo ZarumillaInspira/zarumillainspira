@@ -730,6 +730,178 @@
         transform: translateY(0);
     }
 
+
+    /* =========================
+       PRODUCT DETAIL MODAL
+    ========================= */
+
+    .producto-img {
+        cursor: pointer;
+    }
+
+    .producto-card.sold-card .producto-img {
+        cursor: pointer;
+    }
+
+    .btn-add.sold-out {
+        background: #d9ddd8;
+        color: #68736d;
+        cursor: not-allowed;
+        transform: none !important;
+    }
+
+    .producto-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 3000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 25px;
+        background: rgba(3, 23, 18, .72);
+        backdrop-filter: blur(8px);
+    }
+
+    .producto-modal.open {
+        display: flex;
+        animation: modalFade .25s ease;
+    }
+
+    .modal-card {
+        position: relative;
+        width: min(920px, 100%);
+        max-height: 90vh;
+        overflow: auto;
+        display: grid;
+        grid-template-columns: .9fr 1.1fr;
+        border-radius: 28px;
+        background: var(--cream);
+        box-shadow: 0 35px 100px rgba(0,0,0,.30);
+        animation: modalUp .35s var(--ease);
+    }
+
+    .modal-image {
+        min-height: 520px;
+        background: #edf0eb;
+    }
+
+    .modal-image img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+    }
+
+    .modal-content {
+        padding: 55px 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .modal-category {
+        margin-bottom: 12px;
+        color: var(--gold);
+        font-size: .7rem;
+        font-weight: 800;
+        letter-spacing: .15em;
+        text-transform: uppercase;
+    }
+
+    .modal-content h2 {
+        color: var(--green);
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.3rem, 5vw, 4.3rem);
+        line-height: .95;
+        font-weight: 500;
+        margin-bottom: 22px;
+    }
+
+    .modal-content p {
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.8;
+        margin-bottom: 28px;
+    }
+
+    .modal-price {
+        color: var(--green);
+        font-size: 1.4rem;
+        font-weight: 800;
+        margin-bottom: 24px;
+    }
+
+    .modal-status {
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+        margin-bottom: 28px;
+        padding: 9px 13px;
+        border-radius: 999px;
+        background: rgba(201,162,78,.14);
+        color: var(--green);
+        font-size: .72rem;
+        font-weight: 800;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+    }
+
+    .modal-status.unavailable {
+        background: rgba(100,110,105,.13);
+        color: #69756f;
+    }
+
+    .modal-close {
+        position: absolute;
+        z-index: 5;
+        top: 18px;
+        right: 18px;
+        width: 42px;
+        height: 42px;
+        border: 0;
+        border-radius: 50%;
+        background: var(--green);
+        color: var(--white);
+        font-size: 1.3rem;
+        cursor: pointer;
+        transition: .25s var(--ease);
+    }
+
+    .modal-close:hover {
+        transform: rotate(90deg) scale(1.05);
+        background: var(--green-2);
+    }
+
+    @keyframes modalFade {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes modalUp {
+        from { opacity: 0; transform: translateY(25px) scale(.98); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @media (max-width: 700px) {
+        .producto-modal {
+            padding: 15px;
+        }
+
+        .modal-card {
+            grid-template-columns: 1fr;
+            max-height: 94vh;
+        }
+
+        .modal-image {
+            min-height: 330px;
+            max-height: 390px;
+        }
+
+        .modal-content {
+            padding: 32px 27px 35px;
+        }
+    }
+
     /* =========================
        RESPONSIVE
     ========================= */
@@ -1074,15 +1246,14 @@
             class="producto-card reveal"
             data-id="polo-manglares"
             data-nombre="Polo Mangles"
-            data-precio="20.00"
+            data-precio="30.00"
             data-categoria="Zarumilla"
         >
 
             <div class="producto-img">
 
                 <span class="producto-badge">
-                    Original
-                </span>
+                    Agotado</span>
 
                 <img src="estilo1.png" alt="Polo Mangles">
 
@@ -1111,9 +1282,7 @@
                     S/ 30.00
                 </span>
 
-                <button class="btn-add">
-                    Agregar
-                </button>
+                <button class="btn-add sold-out" disabled>Agotado</button>
 
             </div>
 
@@ -1126,15 +1295,14 @@
             class="producto-card reveal"
             data-id="polo-rio"
             data-nombre="Polo Obelisco"
-            data-precio="20.00"
+            data-precio="30.00"
             data-categoria="Territorio"
         >
 
             <div class="producto-img">
 
                 <span class="producto-badge">
-                    Territorio
-                </span>
+                    Agotado</span>
 
                 <img src="estilo2.png" alt="Polo Obelisco">
 
@@ -1163,9 +1331,7 @@
                     S/ 30.00
                 </span>
 
-                <button class="btn-add">
-                    Agregar
-                </button>
+                <button class="btn-add sold-out" disabled>Agotado</button>
 
             </div>
 
@@ -1178,7 +1344,7 @@
             class="producto-card reveal"
             data-id="polo-frontera"
             data-nombre="Polo Lamederos"
-            data-precio="20.00"
+            data-precio="30.00"
             data-categoria="Identidad"
         >
 
@@ -1230,15 +1396,14 @@
             class="producto-card reveal"
             data-id="polo-tumbes"
             data-nombre="Polo de Tierra Zarumillenze"
-            data-precio="20.00"
+            data-precio="30.00"
             data-categoria="Edición Especial"
         >
 
             <div class="producto-img">
 
                 <span class="producto-badge gold">
-                    Especial
-                </span>
+                    Agotado</span>
 
                 <img
                     src="estilo4.png"
@@ -1270,9 +1435,7 @@
                     S/ 30.00
                 </span>
 
-                <button class="btn-add">
-                    Agregar
-                </button>
+                <button class="btn-add sold-out" disabled>Agotado</button>
 
             </div>
 
@@ -1285,15 +1448,14 @@
             class="producto-card reveal"
             data-id="polo-cocodrilo"
             data-nombre="Polo Cocodrilo"
-            data-precio="20.00"
+            data-precio="30.00"
             data-categoria="Territorio"
         >
 
             <div class="producto-img">
 
                 <span class="producto-badge">
-                    Nuevo
-                </span>
+                    Agotado</span>
 
                 <img
                     src="cocodrilo.jpg"
@@ -1325,9 +1487,7 @@
                     S/ 30.00
                 </span>
 
-                <button class="btn-add">
-                    Agregar
-                </button>
+                <button class="btn-add sold-out" disabled>Agotado</button>
 
             </div>
 
@@ -1347,8 +1507,7 @@
             <div class="producto-img">
 
                 <span class="producto-badge gold">
-                    Accesorio
-                </span>
+                    Agotado</span>
 
                 <img
                     src="gorra1.jpg"
@@ -1380,9 +1539,7 @@
                     S/ 15.00
                 </span>
 
-                <button class="btn-add">
-                    Agregar
-                </button>
+                <button class="btn-add sold-out" disabled>Agotado</button>
 
             </div>
 
@@ -1401,8 +1558,7 @@
             <div class="producto-img">
 
                 <span class="producto-badge gold">
-                    Edición limitada
-                </span>
+                    Agotado</span>
 
                 <img
                     src="gorra2.jpg"
@@ -1434,15 +1590,144 @@
                     S/ 15.00
                 </span>
 
-                <button class="btn-add">
-                    Agregar
-                </button>
+                <button class="btn-add sold-out" disabled>Agotado</button>
 
             </div>
 
         </article>
 
-    </div>
+    
+        <!-- NUEVOS PRODUCTOS — COLECCIÓN POLITOS 1–8 -->
+
+        <article class="producto-card reveal" data-id="polito-1" data-nombre="Brisa del Estero" data-precio="30.00" data-categoria="Territorio" data-descripcion="Una propuesta inspirada en las aguas tranquilas y los paisajes que forman parte del territorio de Zarumilla." data-imagen="politos1.jpg" data-disponible="true">
+            <div class="producto-img">
+                <span class="producto-badge">Nuevo</span>
+                <img src="politos1.jpg" alt="Polo Brisa del Estero">
+            </div>
+            <div class="producto-info">
+                <span class="producto-cat">Territorio</span>
+                <h3>Brisa del Estero</h3>
+                <p class="producto-description">Un diseño que toma como inspiración la calma y el movimiento de nuestros esteros.</p>
+            </div>
+            <div class="producto-footer">
+                <span class="producto-price">S/ 30.00</span>
+                <button class="btn-add">Agregar</button>
+            </div>
+        </article>
+
+        <article class="producto-card reveal" data-id="polito-2" data-nombre="Sendero de Frontera" data-precio="30.00" data-categoria="Zarumilla" data-descripcion="Una pieza que representa los caminos, encuentros y paisajes que hacen de Zarumilla un territorio único." data-imagen="politos2.jpg" data-disponible="true">
+            <div class="producto-img">
+                <span class="producto-badge">Nuevo</span>
+                <img src="politos2.jpg" alt="Polo Sendero de Frontera">
+            </div>
+            <div class="producto-info">
+                <span class="producto-cat">Zarumilla</span>
+                <h3>Sendero de Frontera</h3>
+                <p class="producto-description">Una identidad que nace de los caminos y del carácter fronterizo de nuestra tierra.</p>
+            </div>
+            <div class="producto-footer">
+                <span class="producto-price">S/ 30.00</span>
+                <button class="btn-add">Agregar</button>
+            </div>
+        </article>
+
+        <article class="producto-card reveal" data-id="polito-3" data-nombre="Sol de Zarumilla" data-precio="30.00" data-categoria="Identidad" data-descripcion="Una interpretación contemporánea de la energía, la luz y el orgullo que sentimos por nuestra tierra." data-imagen="politos3.jpg" data-disponible="true">
+            <div class="producto-img">
+                <span class="producto-badge gold">Destacado</span>
+                <img src="politos3.jpg" alt="Polo Sol de Zarumilla">
+            </div>
+            <div class="producto-info">
+                <span class="producto-cat">Identidad</span>
+                <h3>Sol de Zarumilla</h3>
+                <p class="producto-description">Una pieza que transforma la energía de nuestra tierra en identidad para vestir.</p>
+            </div>
+            <div class="producto-footer">
+                <span class="producto-price">S/ 30.00</span>
+                <button class="btn-add">Agregar</button>
+            </div>
+        </article>
+
+        <article class="producto-card reveal" data-id="polito-4" data-nombre="Raíces del Norte" data-precio="30.00" data-categoria="Identidad" data-descripcion="Un diseño pensado para representar las raíces, la memoria y el orgullo de pertenecer a esta parte del norte del Perú." data-imagen="politos4.jpg" data-disponible="true">
+            <div class="producto-img">
+                <span class="producto-badge">Nuevo</span>
+                <img src="politos4.jpg" alt="Polo Raíces del Norte">
+            </div>
+            <div class="producto-info">
+                <span class="producto-cat">Identidad</span>
+                <h3>Raíces del Norte</h3>
+                <p class="producto-description">Nuestra historia convertida en una pieza para llevar las raíces contigo.</p>
+            </div>
+            <div class="producto-footer">
+                <span class="producto-price">S/ 30.00</span>
+                <button class="btn-add">Agregar</button>
+            </div>
+        </article>
+
+        <article class="producto-card reveal" data-id="polito-5" data-nombre="Frontera Dorada" data-precio="30.00" data-categoria="Edición Especial" data-descripcion="Una edición con carácter propio, inspirada en la fuerza de nuestra frontera y en el orgullo de Zarumilla." data-imagen="politos5.jpg" data-disponible="true">
+            <div class="producto-img">
+                <span class="producto-badge gold">Especial</span>
+                <img src="politos5.jpg" alt="Polo Frontera Dorada">
+            </div>
+            <div class="producto-info">
+                <span class="producto-cat">Edición Especial</span>
+                <h3>Frontera Dorada</h3>
+                <p class="producto-description">Un concepto especial que une territorio, identidad y orgullo local.</p>
+            </div>
+            <div class="producto-footer">
+                <span class="producto-price">S/ 30.00</span>
+                <button class="btn-add">Agregar</button>
+            </div>
+        </article>
+
+        <article class="producto-card reveal" data-id="polito-6" data-nombre="Horizonte del Pacífico" data-precio="30.00" data-categoria="Territorio" data-descripcion="Una pieza inspirada en el horizonte, la costa y la conexión natural que caracteriza al territorio tumbesino." data-imagen="politos6.jpg" data-disponible="true">
+            <div class="producto-img">
+                <span class="producto-badge">Nuevo</span>
+                <img src="politos6.jpg" alt="Polo Horizonte del Pacífico">
+            </div>
+            <div class="producto-info">
+                <span class="producto-cat">Territorio</span>
+                <h3>Horizonte del Pacífico</h3>
+                <p class="producto-description">Una gorra para llevar el sello de nuestra tierra en cualquier lugar..</p>
+            </div>
+            <div class="producto-footer">
+                <span class="producto-price">S/ 15.00</span>
+                <button class="btn-add">Agregar</button>
+            </div>
+        </article>
+
+        <article class="producto-card reveal" data-id="polito-7" data-nombre="Sello Zarumillenze" data-precio="15.00" data-categoria="Accesorios" data-descripcion="Una gorra pensada como un pequeño sello de pertenencia: sencilla, versátil y con identidad de Zarumilla." data-imagen="politos7.jpg" data-disponible="true">
+            <div class="producto-img">
+                <span class="producto-badge gold">Accesorio</span>
+                <img src="politos7.jpg" alt="Gorra Sello Zarumillenze">
+            </div>
+            <div class="producto-info">
+                <span class="producto-cat">Accesorios</span>
+                <h3>Sello Zarumillenze</h3>
+                <p class="producto-description">Sello Zarumillense es una prenda con identidad, orgullo y tradición de frontera...</p>
+            </div>
+            <div class="producto-footer">
+                <span class="producto-price">S/ 30.00</span>
+                <button class="btn-add">Agregar</button>
+            </div>
+        </article>
+
+        <article class="producto-card reveal" data-id="polito-8" data-nombre="Alma del Río" data-precio="30.00" data-categoria="Zarumilla" data-descripcion="Un diseño que evoca el río como parte del paisaje, la memoria y la identidad que compartimos." data-imagen="politos8.jpg" data-disponible="true">
+            <div class="producto-img">
+                <span class="producto-badge gold">Edición Especial</span>
+                <img src="politos8.jpg" alt="Polo Alma del Río">
+            </div>
+            <div class="producto-info">
+                <span class="producto-cat">Zarumilla</span>
+                <h3>Alma del Río</h3>
+                <p class="producto-description">Una pieza que convierte el paisaje del río en una expresión de identidad.</p>
+            </div>
+            <div class="producto-footer">
+                <span class="producto-price">S/ 30.00</span>
+                <button class="btn-add">Agregar</button>
+            </div>
+        </article>
+
+</div>
 
 </main>
 
@@ -1535,6 +1820,24 @@
     </div>
 
 </section>
+
+
+<!-- MODAL DE INFORMACIÓN DEL PRODUCTO -->
+<div class="producto-modal" id="producto-modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="modal-close" id="modal-close" aria-label="Cerrar">×</button>
+        <div class="modal-image">
+            <img id="modal-image" src="" alt="">
+        </div>
+        <div class="modal-content">
+            <span class="modal-category" id="modal-category"></span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-description"></p>
+            <div class="modal-price" id="modal-price"></div>
+            <span class="modal-status" id="modal-status"></span>
+        </div>
+    </div>
+</div>
 
 <footer class="site-footer">
 
@@ -1788,6 +2091,66 @@
 
         });
 
+    });
+
+
+
+    /* DETALLE DE PRODUCTOS */
+
+    const productoModal = document.getElementById("producto-modal");
+    const modalClose = document.getElementById("modal-close");
+    const modalImage = document.getElementById("modal-image");
+    const modalCategory = document.getElementById("modal-category");
+    const modalTitle = document.getElementById("modal-title");
+    const modalDescription = document.getElementById("modal-description");
+    const modalPrice = document.getElementById("modal-price");
+    const modalStatus = document.getElementById("modal-status");
+
+    function abrirDetalle(producto) {
+        const imagen = producto.dataset.imagen || producto.querySelector(".producto-img img")?.getAttribute("src");
+        const nombre = producto.dataset.nombre || producto.querySelector("h3")?.textContent.trim();
+        const categoria = producto.dataset.categoria || producto.querySelector(".producto-cat")?.textContent.trim();
+        const precio = producto.dataset.precio || "30.00";
+        const descripcion = producto.dataset.descripcion || producto.querySelector(".producto-description")?.textContent.trim();
+        const agotado = producto.querySelector(".btn-add.sold-out");
+
+        modalImage.src = imagen;
+        modalImage.alt = nombre;
+        modalCategory.textContent = categoria;
+        modalTitle.textContent = nombre;
+        modalDescription.textContent = descripcion;
+        modalPrice.textContent = `S/ ${precio}`;
+
+        modalStatus.textContent = agotado ? "Agotado por ahora" : "Disponible";
+        modalStatus.classList.toggle("unavailable", Boolean(agotado));
+
+        productoModal.classList.add("open");
+        productoModal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+    }
+
+    function cerrarDetalle() {
+        productoModal.classList.remove("open");
+        productoModal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+    }
+
+    document.querySelectorAll(".producto-img").forEach(imagen => {
+        imagen.addEventListener("click", () => {
+            abrirDetalle(imagen.closest(".producto-card"));
+        });
+    });
+
+    modalClose.addEventListener("click", cerrarDetalle);
+
+    productoModal.addEventListener("click", event => {
+        if (event.target === productoModal) cerrarDetalle();
+    });
+
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && productoModal.classList.contains("open")) {
+            cerrarDetalle();
+        }
     });
 
 
